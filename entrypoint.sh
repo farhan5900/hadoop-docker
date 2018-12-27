@@ -47,5 +47,5 @@ fi
 if [ -z $1 ]; then
     exec $@
 else
-    exec $HADOOP_PREFIX/sbin/hadoop-daemon.sh start $@
+    exec hadoop-fg start $@
 fi

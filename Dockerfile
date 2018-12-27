@@ -24,7 +24,8 @@ ENV HADOOP_PREFIX=/opt/hadoop-$HADOOP_VERSION
 ENV HADOOP_CONF_DIR=/etc/hadoop
 ENV PATH $HADOOP_PREFIX/bin/:$PATH
 
+ADD hadoop-fg $HADOOP_PREFIX/bin/hadoop-fg
 ADD entrypoint.sh /entrypoint.sh
-RUN chmod a+x /entrypoint.sh
+RUN chmod a+x /entrypoint.sh $HADOOP_PREFIX/bin/hadoop-fg
 
 ENTRYPOINT ["/entrypoint.sh"]
