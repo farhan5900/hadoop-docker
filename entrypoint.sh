@@ -2,6 +2,9 @@
 
 # Set some sensible defaults
 export CORE_CONF_fs_defaultFS=${CORE_CONF_fs_defaultFS:-hdfs://`hostname -f`:8020}
+export HDFS_CONF_dfs_replication=${HDFS_CONF_dfs_replication:-1}
+export HDFS_CONF_dfs_namenode_name_dir=${HDFS_CONF_dfs_namenode_name_dir:-file:///hdfs/namenode}
+export HDFS_CONF_dfs_datanode_data_dir=${HDFS_CONF_dfs_datanode_data_dir:-file:///hdfs/datanode}
 
 function addProperty() {
   local path=$1
@@ -37,4 +40,12 @@ configure /etc/hadoop/yarn-site.xml yarn YARN_CONF
 configure /etc/hadoop/httpfs-site.xml httpfs HTTPFS_CONF
 configure /etc/hadoop/kms-site.xml kms KMS_CONF
 
-exec $@
+if [ $1 = "namenode" ]; then
+    hdfs namenode -format
+fi
+
+if [ -z $1 ]; then
+    exec $@
+else
+    exec $HADOOP_PREFIX/sbin/hadoop-daemon.sh start $@
+fi
