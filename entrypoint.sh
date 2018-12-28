@@ -44,8 +44,11 @@ if [ $1 = "namenode" ]; then
     hdfs namenode -format
 fi
 
-if [ -z $1 ]; then
-    exec $@
-else
-    exec hadoop-fg start $@
-fi
+case $1 in
+    namenode|secondarynamenode|datanode|journalnode|dfs|dfsadmin|fsck|balancer|zkfc)
+        exec hadoop-fg start $@
+    ;;
+    (*)
+        exec $@
+    ;;
+esac
