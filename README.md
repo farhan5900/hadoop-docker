@@ -1,6 +1,6 @@
 # Apache Hadoop Docker image
 
-This docker image is most suitable for DC/OS. Container of this image start by accepting hadoop daemon name as a parameter. It will run image with given hadoop-daemon only.
+This docker image is most suitable for DC/OS. Container of this image start by accepting hadoop daemon name (namenode|secondarynamenode|datanode|journalnode|dfs|dfsadmin|fsck|balancer|zkfc) as a parameter. It will run image with given hadoop-daemon. You can also run image by passing any valid executable shell name (bash|sh).
 
 ## Quick Start
 
@@ -16,7 +16,7 @@ To run the docker image, run:
 
 ## Configure Environment Variables
 
-The configuration parameters can be specified in the hadoop.env file or as environmental variables for specific services (e.g. namenode, datanode etc.):
+The configuration parameters can be specified as environmental variables for specific services (e.g. namenode, datanode etc.):
 ```
   CORE_CONF_fs_defaultFS=hdfs://namenode:8020
 ```
