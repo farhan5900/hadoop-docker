@@ -28,4 +28,6 @@ ADD hadoop-fg $HADOOP_PREFIX/bin/hadoop-fg
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod a+x /entrypoint.sh $HADOOP_PREFIX/bin/hadoop-fg
 
+EXPOSE 8020
+
 ENTRYPOINT ["/entrypoint.sh"]
