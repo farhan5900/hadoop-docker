@@ -2,7 +2,7 @@
 
 # Set some sensible defaults
 export CORE_CONF_fs_defaultFS=${CORE_CONF_fs_defaultFS:-hdfs://`hostname -f`:8020}
-export HDFS_CONF_dfs_replication=${HDFS_CONF_dfs_replication:-1}
+export HDFS_CONF_dfs_replication=${HDFS_CONF_dfs_replication:-3}
 export HDFS_CONF_dfs_namenode_name_dir=${HDFS_CONF_dfs_namenode_name_dir:-file:///hdfs/namenode}
 export HDFS_CONF_dfs_datanode_data_dir=${HDFS_CONF_dfs_datanode_data_dir:-file:///hdfs/datanode}
 
